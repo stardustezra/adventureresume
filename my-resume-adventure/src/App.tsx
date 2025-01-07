@@ -53,7 +53,7 @@ const App: React.FC = () => {
     <div className="app">
       {currentScreen === "welcome" && (
         <div className="screen fade-in">
-          <h1 className="title">Welcome to My Resume Adventure!</h1>
+          <h1 className="title">Welcome Ezra's Resume Adventure!</h1>
           <p className="subtitle">
             Take an interactive journey through my experiences and education to
             discover how I can fit your needs.

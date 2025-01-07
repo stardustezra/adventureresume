@@ -1,6 +1,4 @@
-/* App.css */
-
-/* General app layout */
+/* General App Layout */
 .app {
   display: flex;
   justify-content: center;
@@ -8,114 +6,200 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   color: white;
-  font-family: "Arial", sans-serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
   padding: 20px;
+  overflow: hidden; /* Prevent scroll flickering */
 }
 
-/* Centered layout for screens */
+/* Centered Card-like Screens */
 .screen {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  max-width: 600px;
+  padding: 30px;
+  /* max-width: 600px; */
   text-align: center;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.8s ease-in-out;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Title and subtitle with exciting typography */
+.screen:hover {
+  transform: scale(1.02);
+}
+
+/* Welcome Screen Typography */
 .title {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 900;
   margin-bottom: 20px;
   color: #ffdd57;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  animation: fadeSlideDown 1s ease-in-out;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
 }
 
 .subtitle {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   margin-bottom: 30px;
   color: #d1e8ff;
-  animation: fadeSlideUp 1s ease-in-out;
+  line-height: 1.5;
 }
 
-/* Buttons with hover animations */
+/* Buttons */
 .btn {
   margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
+  padding: 14px 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
   color: white;
-  background: #4caf50;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background 0.3s, transform 0.2s ease;
 }
 
 .btn:hover {
-  background-color: #45a049;
+  background: linear-gradient(90deg, #feb47b, #ff7e5f);
   transform: scale(1.05);
 }
 
 .btn:disabled {
-  background-color: gray;
+  background: gray;
   cursor: not-allowed;
 }
 
-/* Custom styling for lists */
-ul {
-  list-style: none; /* Remove default bullet points */
-  padding: 0;
+/* Skill Selection */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 20px 0;
 }
 
-li {
-  margin: 10px 0;
-  font-size: 1.2rem;
-  color: #ffffff;
+.skills button {
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.skills button:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: #ffdd57;
+}
+
+.skills button.selected {
+  background: #ffdd57;
+  color: black;
+  border-color: white;
+}
+
+.skills button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Results Screen */
+.results-screen {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  animation: fadeIn 0.6s ease-in-out;
+  width: 100%;
+  max-width: 1000px; /* Increased the max-width of the container */
 }
 
-/* Add custom icons or styled dots for lists */
-li::before {
-  content: "•"; /* Custom dot */
+.results-title {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+/* Flexbox container to display sections side by side */
+.results-container {
+  display: flex;
+  gap: 20px; /* Adds space between the sections */
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allows wrapping if the screen is small */
+}
+
+/* Section Container */
+.section {
+  flex: 1;
+  min-width: 250px; /* Prevents sections from becoming too narrow */
+  max-width: 45%; /* Adjusts the width to fit next to each other */
+  margin: 20px 0;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
   color: #ffdd57;
-  font-size: 1.5rem;
-  margin-right: 10px;
+}
+
+/* Result Cards */
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffdd57;
+}
+
+.card-description {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.card-skills {
+  font-size: 0.9rem;
+  color: #d1e8ff;
+}
+
+.no-matches {
+  font-size: 1.2rem;
+  color: #ffcccc;
+}
+
+/* Restart Button */
+.btn-restart {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #d32f2f;
+  color: white;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn-restart:hover {
+  background: #b71c1c;
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlideUp {
   from {
     opacity: 0;
     transform: translateY(20px);

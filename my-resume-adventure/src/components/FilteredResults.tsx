@@ -33,7 +33,7 @@ const experiences: Experience[] = [
     title: "Supporter at YouSee",
     skills: ["Customer Service", "Tech Support", "Billing"],
     description:
-      "Floorwalker: Helped new employees when the manager was unavailable. Supported DSL, COAX, Fiber, and mobile. Handled customer service via mail and phone support for billing inquiries.",
+      "Floorwalker: Assisted training of new employees. Supported DSL, COAX, Fiber, and mobile. Handled customer service via mail and phone support for billing inquiries.",
   },
   {
     title: "Graphic Designer at Odense Aafart",
@@ -59,21 +59,42 @@ const educations: Education[] = [
     institution: "UCL Erhvervsakademi og Professionshøjskole",
     description:
       "Focused on backend and frontend development, including SQL, Node.js, Express.js, and React.",
-    skills: ["React", "Node.js", "SQL", "Vue.js", "Python", "Angular"],
+    skills: [
+      "React",
+      "Node.js",
+      "SQL",
+      "Vue.js",
+      "Python",
+      "Angular",
+      "TypeScript",
+    ],
   },
   {
     title: "Pba. Digital Concept Development",
     institution: "UCL Erhvervsakademi og Professionshøjskole",
     description:
-      "Specialized in UX/UI design, project management, and user research.",
-    skills: ["UX/UI Design", "Project Management", "User Research"],
+      "Specialized in UX/UI design, project management, user research and online marketing.",
+    skills: [
+      "UX/UI Design",
+      "Project Management",
+      "User Research",
+      "Content Creation",
+      "Social Media",
+    ],
   },
   {
     title: "Multimedia Design",
     institution: "UCL Erhvervsakademi og Professionshøjskole",
     description:
       "Covered web design, WordPress, and Adobe creative tools like Photoshop and Illustrator.",
-    skills: ["HTML", "CSS", "WordPress", "Adobe Creative Suite"],
+    skills: [
+      "HTML",
+      "CSS",
+      "WordPress",
+      "Adobe Creative Suite",
+      "Social Media",
+      "Content Creation",
+    ],
   },
 ];
 
@@ -92,48 +113,48 @@ export const FilteredResults: React.FC<FilteredResultsProps> = ({
     <div className="results-screen">
       <h2 className="results-title">Matched Results</h2>
 
-      {filteredExperiences.length > 0 && (
-        <div className="section">
-          <h3 className="section-title">Experiences</h3>
-          {filteredExperiences.map((experience, index) => (
-            <div key={index} className="card">
-              <h4 className="card-title">{experience.title}</h4>
-              <p className="card-description">{experience.description}</p>
-              <p className="card-skills">
-                <strong>Skills:</strong> {experience.skills.join(", ")}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="results-container">
+        {/* Experiences Section */}
+        {filteredExperiences.length > 0 && (
+          <div className="section">
+            <h3 className="section-title">Experiences</h3>
+            {filteredExperiences.map((experience, index) => (
+              <div key={index} className="card">
+                <h4 className="card-title">{experience.title}</h4>
+                <p className="card-description">{experience.description}</p>
+                <p className="card-skills">
+                  <strong>Skills:</strong> {experience.skills.join(", ")}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
 
-      {filteredEducations.length > 0 && (
-        <div className="section">
-          <h3 className="section-title">Educations</h3>
-          {filteredEducations.map((education, index) => (
-            <div key={index} className="card">
-              <h4 className="card-title">{education.title}</h4>
-              <p className="card-institution">
-                <strong>Institution:</strong> {education.institution}
-              </p>
-              <p className="card-description">{education.description}</p>
-              <p className="card-skills">
-                <strong>Skills:</strong> {education.skills.join(", ")}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
+        {/* Educations Section */}
+        {filteredEducations.length > 0 && (
+          <div className="section">
+            <h3 className="section-title">Educations</h3>
+            {filteredEducations.map((education, index) => (
+              <div key={index} className="card">
+                <h4 className="card-title">{education.title}</h4>
+                <p className="card-institution">
+                  <strong>Institution:</strong> {education.institution}
+                </p>
+                <p className="card-description">{education.description}</p>
+                <p className="card-skills">
+                  <strong>Skills:</strong> {education.skills.join(", ")}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
       {filteredExperiences.length === 0 && filteredEducations.length === 0 && (
         <p className="no-matches">
           No experiences or educations match your selected skills.
         </p>
       )}
-
-      <button className="btn-restart" onClick={() => window.location.reload()}>
-        Back to Start
-      </button>
     </div>
   );
 };
