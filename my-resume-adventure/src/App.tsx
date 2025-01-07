@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { SkillSelection } from "./components/SkillSelection";
 import { FilteredResults } from "./components/FilteredResults";
+import "./App.css"; // We'll add styles here
 
 const App: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<
@@ -43,27 +44,35 @@ const App: React.FC = () => {
     setCurrentScreen("results");
   };
 
+  const resetApp = () => {
+    setSelectedSkills([]);
+    setCurrentScreen("welcome");
+  };
+
   return (
     <div className="app">
       {currentScreen === "welcome" && (
-        <div>
-          <h1>Welcome to My Resume Adventure!</h1>
-          <p>
+        <div className="screen fade-in">
+          <h1 className="title">Welcome to My Resume Adventure!</h1>
+          <p className="subtitle">
             Take an interactive journey through my experiences and education to
             discover how I can fit your needs.
           </p>
-          <button onClick={goToSkillsScreen}>Start</button>
+          <button className="btn" onClick={goToSkillsScreen}>
+            Start
+          </button>
         </div>
       )}
 
       {currentScreen === "skills" && (
-        <div>
+        <div className="screen fade-in">
           <SkillSelection
             skillsList={skillsList}
             selectedSkills={selectedSkills}
             onSkillSelection={handleSkillSelection}
           />
           <button
+            className="btn"
             onClick={goToResultsScreen}
             disabled={selectedSkills.length === 0}
           >
@@ -73,7 +82,12 @@ const App: React.FC = () => {
       )}
 
       {currentScreen === "results" && (
-        <FilteredResults selectedSkills={selectedSkills} />
+        <div className="screen fade-in">
+          <FilteredResults selectedSkills={selectedSkills} />
+          <button className="btn" onClick={resetApp}>
+            Start Over
+          </button>
+        </div>
       )}
     </div>
   );

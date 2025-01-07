@@ -80,56 +80,60 @@ const educations: Education[] = [
 export const FilteredResults: React.FC<FilteredResultsProps> = ({
   selectedSkills,
 }) => {
-  // Filter experiences that match at least one selected skill
   const filteredExperiences = experiences.filter((experience) =>
     experience.skills.some((skill) => selectedSkills.includes(skill))
   );
 
-  // Filter educations that match at least one selected skill
   const filteredEducations = educations.filter((education) =>
     education.skills.some((skill) => selectedSkills.includes(skill))
   );
 
   return (
-    <div>
-      <h2>Matched Results</h2>
+    <div className="results-screen">
+      <h2 className="results-title">Matched Results</h2>
 
       {filteredExperiences.length > 0 && (
-        <div>
-          <h3>Experiences</h3>
-          <ul>
-            {filteredExperiences.map((experience, index) => (
-              <li key={index}>
-                <h4>{experience.title}</h4>
-                <p>{experience.description}</p>
-                <strong>Skills: {experience.skills.join(", ")}</strong>
-              </li>
-            ))}
-          </ul>
+        <div className="section">
+          <h3 className="section-title">Experiences</h3>
+          {filteredExperiences.map((experience, index) => (
+            <div key={index} className="card">
+              <h4 className="card-title">{experience.title}</h4>
+              <p className="card-description">{experience.description}</p>
+              <p className="card-skills">
+                <strong>Skills:</strong> {experience.skills.join(", ")}
+              </p>
+            </div>
+          ))}
         </div>
       )}
 
       {filteredEducations.length > 0 && (
-        <div>
-          <h3>Educations</h3>
-          <ul>
-            {filteredEducations.map((education, index) => (
-              <li key={index}>
-                <h4>{education.title}</h4>
-                <p>
-                  <strong>Institution:</strong> {education.institution}
-                </p>
-                <p>{education.description}</p>
-                <strong>Skills: {education.skills.join(", ")}</strong>
-              </li>
-            ))}
-          </ul>
+        <div className="section">
+          <h3 className="section-title">Educations</h3>
+          {filteredEducations.map((education, index) => (
+            <div key={index} className="card">
+              <h4 className="card-title">{education.title}</h4>
+              <p className="card-institution">
+                <strong>Institution:</strong> {education.institution}
+              </p>
+              <p className="card-description">{education.description}</p>
+              <p className="card-skills">
+                <strong>Skills:</strong> {education.skills.join(", ")}
+              </p>
+            </div>
+          ))}
         </div>
       )}
 
       {filteredExperiences.length === 0 && filteredEducations.length === 0 && (
-        <p>No experiences or educations match your selected skills.</p>
+        <p className="no-matches">
+          No experiences or educations match your selected skills.
+        </p>
       )}
+
+      <button className="btn-restart" onClick={() => window.location.reload()}>
+        Back to Start
+      </button>
     </div>
   );
 };
