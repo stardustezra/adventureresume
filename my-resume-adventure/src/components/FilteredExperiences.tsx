@@ -32,22 +32,26 @@ const experiences = [
 export const FilteredExperiences: React.FC<FilteredExperiencesProps> = ({
   selectedSkills,
 }) => {
-  const filteredExperiences = experiences.filter((exp) =>
-    selectedSkills.every((skill) => exp.skills.includes(skill))
+  // Filter experiences that have at least one matching skill
+  const filteredExperiences = experiences.filter((experience) =>
+    experience.skills.some((skill) => selectedSkills.includes(skill))
   );
 
   return (
     <div>
-      <h2>Relevant Experiences Based on Your Skills:</h2>
+      <h2>Matched Experiences</h2>
       {filteredExperiences.length > 0 ? (
-        filteredExperiences.map((exp, index) => (
-          <div key={index}>
-            <h3>{exp.title}</h3>
-            <p>{exp.description}</p>
-          </div>
-        ))
+        <ul>
+          {filteredExperiences.map((experience, index) => (
+            <li key={index}>
+              <h3>{experience.title}</h3>
+              <p>{experience.description}</p>
+              <strong>Skills: {experience.skills.join(", ")}</strong>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <p>No relevant experiences found for the selected skills.</p>
+        <p>No experiences match your selected skills.</p>
       )}
     </div>
   );
